@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Справка по трамваям</title>
+    <script type="module" src="/jquery-3.6.0.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header__logo">
+            <img src="images/edc_logo.png" height="80px" alt="Логотип ЕДЦ">
+            <a href="/">На главную</a>
+        </div>
+    </header>
+    <section class="title">
+        <h1>Справка по трамваям</h1>
+    </section>
+    <section class="navigation">
+        <div class="navigation__container">
+            <div class="navigation__date">
+                <label for="finddate">Дата</label>
+                <input type="date" id="finddate">
+            </div>
+        </div>
+    </section>
+    <section class="form">
+        <div class="form__container">
+            <table id="main-table"><thead style="position: sticky; top: 0;"  class="main-head">
+                <tr>
+                  <th rowspan="2" class="slim light-grey">Маршрут</th>
+                  <th rowspan="2" class="slim light-grey">Депо</th>
+                  <th colspan="2" class="blue">Выход на 8:00/7:15</th>
+                  <th colspan="2" class="blue">Выход на 18:00</th>
+                  <th colspan="2" class="blue">Рейсы на текущую дату</th>
+
+                  <th colspan="7" class="beige">Причины невыполнения рейсов</th>
+                  <th rowspan="2" class="green">
+                    Рейсы вне плана(выполеннные другим депо или автобусом)
+                  </th>
+
+                  <th colspan="2" class="blue">
+                    Средняя участковая скорость, км/ч
+                  </th>
+                  <th rowspan="2" class="green">
+                    Действия
+                  </th>
+                </tr>
+                <tr>
+                    <th class="slim blue">План</th>
+                  <th class="slim blue">Факт</th>
+                  <th class="slim blue">План</th>
+                  <th class="slim blue">Факт</th>
+                  <th class="slim blue">План</th>
+                  <th class="slim blue">Факт</th>
+
+                  <th class="slim beige">Брак</th>
+
+                  <th class="beige">Задержка движения</th>
+
+                  <th class="beige">Снижение скоросит по ДКР и КР</th>
+
+                  <th class="beige">Снижение скорости</th>
+
+                  <th class="beige">Переключение по ТУ</th>
+
+                  <th class="beige">ИТОГО</th>
+                  <th class="beige">ИТОГО от плана рейсов, %</th>
+                  <th class="slim blue">План</th>
+                  <th class="slim blue">Факт</th>
+                </tr>
+                </thead>
+                <tbody id="form__container__tbody">
+<!--                <tr class="data_insert">-->
+<!--                  <td-->
+<!--                    class="route_number"-->
+
+<!--                  >4П</td>-->
+<!--                  <td-->
+<!--                    class="depo_name"-->
+<!--                    rowspan="2"-->
+<!--                  >depo Apakova</td>-->
+<!--                  <td class="plan-7-15"></td>-->
+<!--                  <td class="fact-7-15"><input type="number" class="n1" readonly/>-->
+<!--                </td>-->
+<!--                  <td class="plan-18-00"></td>-->
+<!--                  <td class="fact-18-00">-->
+<!--                    <input type="number" class="n2" readonly/>-->
+<!--                  </td>-->
+<!--                  <td class="plan_today">-->
+
+<!--                  </td>-->
+<!--                  <td class="fact_today">-->
+
+<!--                  </td>-->
+<!--                  <td class="brak">-->
+<!--                    <input type="number" class="n3" readonly/>-->
+<!--                  </td>-->
+<!--                  <td class="delay">-->
+<!--                    <input type="number" class="n4" readonly/>-->
+<!--                  </td>-->
+<!--                  <td class="speed-deceleration-dkr_kr">-->
+<!--                    <input type="number" class="n5" readonly/>-->
+<!--                  </td>-->
+<!--                  <td class="speed-deceleration">-->
+<!--                    <input type="number" class="n6" readonly/>-->
+<!--                  </td>-->
+<!--                  <td class="switch-tu">-->
+<!--                    <input type="number" class="n7" readonly/>-->
+<!--                  </td>-->
+<!--                  <td class="total-by-route"></td>-->
+<!--              <td class="total-by-route_percent"></td>-->
+<!--                  <td class="flights-off-the-plan">-->
+<!--                    <input type="number" class="n8" readonly/>-->
+<!--                  </td>-->
+<!--                  <td class="average-speed-plan">-->
+<!--                    <input type="number" class="n9" readonly/>-->
+<!--                  </td>-->
+<!--                  <td class="average-speed-fact">-->
+<!--                    <input type="number" class="n10" readonly/>-->
+<!--                  </td>-->
+<!--                  <td class="for-button">-->
+<!--                    <button class="small-button save-data" hidden>Сохранить</button>-->
+<!--                    <button class="small-button change-data" >Изменить</button>-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                <tr class="data_insert">-->
+<!--                  <td-->
+<!--                    class="route_number"-->
+<!--                  >17</td>-->
+<!--                  <td class="plan-7-15"></td>-->
+<!--                  <td class="fact-7-15"><input type="number" class="n1" />-->
+<!--                </td>-->
+<!--                  <td class="plan-18-00"></td>-->
+<!--                  <td class="fact-18-00">-->
+<!--                    <input type="number" class="n2" />-->
+<!--                  </td>-->
+<!--                  <td class="plan_today">-->
+
+<!--                  </td>-->
+<!--                  <td class="fact_today">-->
+
+<!--                  </td>-->
+<!--                  <td class="brak">-->
+<!--                    <input type="number" class="n3" />-->
+<!--                  </td>-->
+<!--                  <td class="delay">-->
+<!--                    <input type="number" class="n4" />-->
+<!--                  </td>-->
+<!--                  <td class="speed-deceleration-dkr_kr">-->
+<!--                    <input type="number" class="n5" />-->
+<!--                  </td>-->
+<!--                  <td class="speed-deceleration">-->
+<!--                    <input type="number" class="n6" />-->
+<!--                  </td>-->
+<!--                  <td class="switch-tu">-->
+<!--                    <input type="number" class="n7" />-->
+<!--                  </td>-->
+<!--                  <td class="total-by-route"></td>-->
+<!--                    <td class="total-by-route_percent"></td>-->
+<!--                  <td class="flights-off-the-plan">-->
+<!--                    <input type="number" class="n8" />-->
+<!--                  </td>-->
+<!--                  <td class="average-speed-plan">-->
+<!--                    <input type="number" class="n9" />-->
+<!--                  </td>-->
+<!--                  <td class="average-speed-fact">-->
+<!--                    <input type="number" class="n10" />-->
+<!--                  </td>-->
+<!--                  <td class="for-button">-->
+<!--                    <button class="small-button save-data">Сохранить</button>-->
+<!--                    <button class="small-button change-data" hidden>Изменить</button>-->
+<!--                  </td>-->
+<!--                </tr>-->
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+    <footer class="footer">
+        <div class="footer__logo">
+            <img src="images/metro_and_transport.png" height="80px" alt="Логотип метро">
+        </div>
+        <div class="footer__pattern">
+            <img src="images/footer_line.png" width="500px" alt="Логотип узор">
+        </div>
+    </footer>
+    <section class="modal" id="save-modal">
+        <div class="modal__container">
+            <div class="close_modal_container">
+                <p>Добавить - Изменить</p>
+                <button class="close_modal" onclick="hideModal()">╳</button>
+            </div>
+            <div class="body-modal"></div>
+            <div class="modal__buttons_bottom">
+                <button class="save-db-button button" onclick="saveModalBtn()">Сохранить</button>
+                <button class="cancel_modal_button button" onclick="hideModal()">Отмена</button>
+            </div>
+        </div>
+    </section>
+    <script src="./index.js"></script>
+    <script type="module" src="/index.js"></script>
+    <script type="module" src="/executor-buttons-modal.js"></script>
+    <script type="module" src="/open-close-modal.js"></script>
+
+</body>
+</html>
