@@ -45,11 +45,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 document.addEventListener('DOMContentLoaded', ()=>{
   getDepots()
-      .then(res => createTable(res));
+      .then(res => {
+        createTable(res)
+      });
+
 });
 
 
 const getDepots = () => new Promise(resolve => {
+  // fetch('', {
+  //   method: 'GET',
+  // })
+  //     .then(response=> response.ok ? resolve(response) : reject(new Error(response.statusText)))
+  //     .catch(error =>  reject(error))
   setTimeout(() => resolve(defaultTable), 200);
 })
 
@@ -153,7 +161,8 @@ const tbodyChangeHandler = (e) => {
 
 const  showModal = (e) => {
   document.getElementById('save-modal').classList.add('modal__show');
-  selectedRow = e.target.parentElement.parentElement.rowIndex
+  selectedRow = e.target.parentElement.parentElement.rowIndex;
+  console.log(selectedRow)
 }
 
 const  hideModal = () => {
